@@ -159,7 +159,13 @@ public class TpMenu {
             System.out.println("No se encontró ningún artículo con ese nombre.");
             return;
         }
-
+        // Pedimos confirmación antes de eliminar.
+        try {
+            confirmarEliminar(scanner, articulos.get(posicion));
+        } catch (RuntimeException e) {
+            System.out.println(e.getMessage());
+            return; // Salimos del método sin eliminar nada.
+        }
         // Eliminamos el elemento según su posición.
         articulos.remove(posicion);
 
@@ -176,6 +182,22 @@ public class TpMenu {
 
         return false;
     }
+
+    public static void confirmarEliminar(Scanner scanner, String nombre) {
+        while (true) {
+            System.out.print("¿Está seguro que desea eliminar el artículo '" + nombre + "'? (S/N): ");
+            String respuesta = scanner.nextLine().trim().toUpperCase();
+
+            if (respuesta.equals("S")) {
+                return; // Confirmación positiva, se procede a eliminar
+            } else if (respuesta.equals("N")) {
+                throw new RuntimeException("Eliminación cancelada por el usuario."); // Cancelación, se lanza una excepción para salir del proceso
+            } else {
+                System.out.println("Respuesta no válida. Por favor, ingrese 'S' para sí o 'N' para no.");
+            }
+        }
+    }
+
     
     public static int buscarPosicionArticulo(ArrayList<String> articulos, String nombre) {
 
