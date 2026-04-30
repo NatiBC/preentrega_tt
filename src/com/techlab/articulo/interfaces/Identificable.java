@@ -1,4 +1,4 @@
-package interfaces;
+package src.com.techlab.articulo.interfaces;
 
 /**
  * CONSIGNA DE ESTA INTERFAZ

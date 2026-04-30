@@ -1,4 +1,4 @@
-package menu;
+package src.com.techlab.articulo.menu;
 
 import java.util.Scanner;
 

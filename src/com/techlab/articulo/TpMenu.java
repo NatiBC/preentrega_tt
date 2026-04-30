@@ -1,3 +1,4 @@
+package src.com.techlab.articulo;
 import java.util.ArrayList;
 import java.util.Scanner;
 

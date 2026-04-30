@@ -1,15 +1,15 @@
-package model;
+package src.com.techlab.articulo.model;
 
 /**
  * CONSIGNA DE ESTA CLASE
  * ------------------------------------------------------------
  * Esta clase debe heredar de Articulo.
  *
- * Representa un artículo electrónico.
+ * Representa un artículo alimenticio.
  *
  * ATRIBUTO ESPECÍFICO
  * ------------------------------------------------------------
- * - garantiaMeses : int
+ * - diasParaVencimiento : int
  *
  * ESTA CLASE DEBE
  * ------------------------------------------------------------
@@ -21,15 +21,12 @@ package model;
  * IDEA DIDÁCTICA PARA calcularPrecioFinal()
  * ------------------------------------------------------------
  * Podés definir una regla propia, por ejemplo:
- * - si la garantía supera 12 meses, aplicar un recargo
- * - si no, dejar el precio igual
- *
- * Lo importante no es la regla comercial exacta,
- * sino mostrar que cada subtipo implementa el cálculo de manera distinta.
+ * - si faltan pocos días para vencer, aplicar descuento
+ * - si no, mantener el precio
  */
-public class ArticuloElectronico extends Articulo {
+public class ArticuloAlimenticio extends Articulo {
 
-    private int garantiaMeses;
+    private int diasParaVencimiento;
 
     // TODO:
     // Crear constructor.
@@ -46,7 +43,7 @@ public class ArticuloElectronico extends Articulo {
     @Override
     public double calcularPrecioFinal() {
         // TODO:
-        // Implementar lógica propia del artículo electrónico.
+        // Implementar lógica propia del artículo alimenticio.
         return 0;
     }
 }
