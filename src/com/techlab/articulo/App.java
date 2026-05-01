@@ -1,13 +1,14 @@
-package com.techlab.articulo;
-
+package src.com.techlab.articulo;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class TpMenu {
+import src.com.techlab.articulo.model.Articulo;
+
+public class App {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        ArrayList<String> articulos = new ArrayList<>();
+        ArrayList<Articulo> articulos = new ArrayList<>();
 
         int opcion;
 
@@ -53,14 +54,18 @@ public class TpMenu {
         scanner.close();
     }
     
-    public static void ingresarArticulo(Scanner s, ArrayList<String> listaArticulos) {
+    public static void ingresarArticulo(Scanner s, ArrayList<Articulo> listaArticulos) {
     
         System.out.println("\n--- INGRESAR ARTÍCULO ---");
 
-
+        // Pedimos el código utilizando un método auxiliar para validar que sea un número entero.
+        int codigo = leerEntero(s, "Ingrese el código del artículo: ");
     
         // Pedimos la descripción utilizando un método auxiliar.
         String nombre = leerTextoNoVacio(s, "Ingrese el nombre del artículo: ");
+
+        // Pedimos el precio utilizando un método auxiliar para validar que sea un número decimal.
+        double precio = leerDouble(s, "Ingrese el precio del artículo: ");
 
         // Antes de agregar el artículo, validamos que no exista ya en la lista.
         if (existeArticulo(listaArticulos, nombre)) {
@@ -68,13 +73,20 @@ public class TpMenu {
             return;
         }
 
+        Articulo articulo = new Articulo(codigo, nombre, precio);
+
+        System.out.println( "Codigo: "+ articulo.getCodigo());
+        articulo.setNombre(nombre);
+        articulo.setPrecio(precio);
+
         // Si no existe, lo agregamos a la lista.
-        listaArticulos.add(nombre);    
+        articulo.add(articulo);
+        // listaArticulos.add(nombre);    
     
         System.out.println("Artículo ingresado correctamente.");
     }
 
-    public static void listarArticulos(ArrayList<String> articulos) {
+    public static void listarArticulos(ArrayList<Articulo> articulos) {
 
         System.out.println("\n--- LISTADO DE ARTÍCULOS ---");
 
@@ -90,7 +102,7 @@ public class TpMenu {
         }
     }
     
-    public static void consultarArticulo(Scanner scanner, ArrayList<String> articulos) {
+    public static void consultarArticulo(Scanner scanner, ArrayList<Articulo> articulos) {
 
         System.out.println("\n--- CONSULTAR ARTÍCULO ---");
 
@@ -112,7 +124,7 @@ public class TpMenu {
         }
     }
     
-    public static void modificarArticulo(Scanner scanner, ArrayList<String> articulos) {
+    public static void modificarArticulo(Scanner scanner, ArrayList<Articulo> articulos) {
 
         System.out.println("\n--- MODIFICAR ARTÍCULO ---");
 
@@ -141,12 +153,12 @@ public class TpMenu {
         }
 
         // Reemplazamos el valor viejo por el nuevo.
-        articulos.set(posicion, nuevaDescripcion);
+        articulos.get(posicion).setNombre(nuevaDescripcion);
 
         System.out.println("Artículo modificado correctamente.");
     }
     
-    public static void eliminarArticulo(Scanner scanner, ArrayList<String> articulos) {
+    public static void eliminarArticulo(Scanner scanner, ArrayList<Articulo> articulos) {
 
         System.out.println("\n--- ELIMINAR ARTÍCULO ---");
 
@@ -176,10 +188,10 @@ public class TpMenu {
         System.out.println("Artículo eliminado correctamente.");
     }
     
-    public static boolean existeArticulo(ArrayList<String> articulos, String nombre) {
+    public static boolean existeArticulo(ArrayList<Articulo> articulos, String nombre) {
         // buscar una alternativa a este method con algun method de ArrayList, como contains, pero no es case insensitive, entonces lo hacemos a mano
-        for (String articulo : articulos) {
-            if (articulo.equalsIgnoreCase(nombre.trim())) {
+        for (Articulo articulo : articulos) {
+            if (articulo.getNombre().equalsIgnoreCase(nombre.trim())){
                 return true;
             }
         }
@@ -203,10 +215,10 @@ public class TpMenu {
     }
 
     
-    public static int buscarPosicionArticulo(ArrayList<String> articulos, String nombre) {
+    public static int buscarPosicionArticulo(ArrayList<Articulo> articulos, String nombre) {
 
         for (int i = 0; i < articulos.size(); i++) {
-            if (articulos.get(i).equalsIgnoreCase(nombre.trim())) {
+            if (articulos.get(i).getNombre().equalsIgnoreCase(nombre.trim())) {
                 return i;
             }
         }
