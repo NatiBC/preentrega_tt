@@ -1,4 +1,4 @@
-package src.com.techlab.articulo.model;
+package com.techlab.articulo.model;
 
 /**
  * CONSIGNA DE ESTA CLASE

@@ -1,8 +1,8 @@
-package src.com.techlab.articulo;
+package com.techlab.articulo;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import src.com.techlab.articulo.model.Articulo;
+import com.techlab.articulo.model.Articulo;
 
 public class App {
 

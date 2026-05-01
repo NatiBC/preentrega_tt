@@ -1,9 +1,9 @@
-package src.com.techlab.articulo.repository;
+package com.techlab.articulo.repository;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import src.com.techlab.articulo.interfaces.Identificable;
+import com.techlab.articulo.interfaces.Identificable;
 
 /**
  * CONSIGNA DE ESTA CLASE

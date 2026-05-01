@@ -1,4 +1,4 @@
-package src.com.techlab.articulo.menu;
+package com.techlab.articulo.menu;
 
 /**
  * CONSIGNA DE ESTA CLASE

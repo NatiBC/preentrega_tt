@@ -1,6 +1,6 @@
-package src.com.techlab.articulo.model;
+package com.techlab.articulo.model;
 
-import src.com.techlab.articulo.interfaces.Identificable;
+import com.techlab.articulo.interfaces.Identificable;
 
 /**
  * CONSIGNA DE ESTA CLASE
