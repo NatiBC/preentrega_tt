@@ -3,12 +3,14 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import com.techlab.articulo.model.Articulo;
+import com.techlab.articulo.model.Categoria;
 
 public class App {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         ArrayList<Articulo> articulos = new ArrayList<>();
+        ArrayList<Categoria> categorias = new ArrayList<>();
 
         int opcion;
 
@@ -21,6 +23,7 @@ public class App {
             System.out.println("3 - Consultar un artículo");
             System.out.println("4 - Modificar un artículo");
             System.out.println("5 - Eliminar un artículo");
+            System.out.println("6 - Listar categorías");
             System.out.println("0 - Salir");
             System.out.println("==========================================");
 
@@ -28,7 +31,7 @@ public class App {
 
             switch (opcion) {
                 case 1:
-                    ingresarArticulo(scanner, articulos);
+                    ingresarArticulo(scanner, articulos, categorias);
                     break;
                 case 2:
                     listarArticulos(articulos);
@@ -42,6 +45,9 @@ public class App {
                 case 5:
                     eliminarArticulo(scanner, articulos);
                     break;
+                case 6:
+                    listarCategoriasExistentes(categorias);
+                    break;
                 case 0:
                     System.out.println("\nSaliendo del sistema. ¡Hasta luego!");
                     break;
@@ -54,7 +60,40 @@ public class App {
         scanner.close();
     }
     
-    public static void ingresarArticulo(Scanner s, ArrayList<Articulo> listaArticulos) {
+    public static void listarCategoriasExistentes (ArrayList<Categoria> categorias) {
+        System.out.println("\n--- LISTADO DE CATEGORÍAS ---");
+        if (categorias.isEmpty()) {
+            System.out.println("No hay categorías cargadas.");
+            return;
+        }
+
+    }
+
+    public static void pedirCategoriaExistente(Scanner scanner, ArrayList<Categoria> categorias) {
+
+        while (true) {
+            int codigoCategoria = leerEntero(scanner, "Ingrese el código de la categoría: ");
+            
+            Categoria categoria = buscarCategoriaPorCodigo(categorias, codigoCategoria);
+
+            if (categoria != null) {
+                return categoria; // Retorna la categoría encontrada
+            }
+
+            System.out.println("Error: la categoría no existe. Por favor, ingrese una categoría válida.");
+        }
+    }
+
+    public static Categoria buscarCategoriaPorCodigo(ArrayList<Categoria> categorias, int codigo) {
+        for (Categoria categoria : categorias) {
+            if (categoria.getCodigo() == codigo) {
+                return categoria; // Retorna la categoría encontrada
+            }
+        }
+        return null; // Retorna null si no se encuentra la categoría
+    }
+
+    public static void ingresarArticulo(Scanner s, ArrayList<Articulo> listaArticulos, ArrayList<Categoria> listaCategorias) {
     
         System.out.println("\n--- INGRESAR ARTÍCULO ---");
 
@@ -80,7 +119,7 @@ public class App {
         articulo.setPrecio(precio);
 
         // Si no existe, lo agregamos a la lista.
-        articulo.add(articulo);
+        listaArticulos.add(articulo);
         // listaArticulos.add(nombre);    
     
         System.out.println("Artículo ingresado correctamente.");

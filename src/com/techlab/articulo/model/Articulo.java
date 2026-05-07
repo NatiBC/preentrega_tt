@@ -3,47 +3,57 @@ package com.techlab.articulo.model;
 import com.techlab.articulo.interfaces.Calculable;
 import com.techlab.articulo.interfaces.Identificable;
 
-public class Articulo {
+// public class Articulo {
 
-    private int codigo;
-    private String nombre;
-    private double precio;
+//     private int codigo;
+//     private String nombre;
+//     private double precio;
+//     private Categoria categoria;
 
-    public Articulo() {
-    }
-    // this es una palabra reservada que se utiliza para referirse al objeto actual. Se usa comúnmente en constructores y
-    //  métodos para distinguir entre los parámetros y los atributos de la clase cuando tienen el mismo nombre.
-    public Articulo(int codigo, String nombre, double precio) {
-        this.codigo = codigo;
-        this.nombre = nombre;
-        this.precio = precio;
-    }
+//     public Articulo() {
+//     }
+//     // this es una palabra reservada que se utiliza para referirse al objeto actual. Se usa comúnmente en constructores y
+//     //  métodos para distinguir entre los parámetros y los atributos de la clase cuando tienen el mismo nombre.
+//     public Articulo(int codigo, String nombre, double precio, Categoria categoria) {
+//         this.codigo = codigo;
+//         this.nombre = nombre;
+//         this.precio = precio;
+//         this.categoria = categoria;
+//     }
 
-    public int getCodigo() {
-        return codigo;
-    }
+//     public int getCodigo() {
+//         return codigo;
+//     }
 
-    public String getNombre() {
-        return nombre;
-    }
+//     public String getNombre() {
+//         return nombre;
+//     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
+//     public void setNombre(String nombre) {
+//         this.nombre = nombre;
+//     }
 
-    public double getPrecio() {
-        return precio;
-    }
+//     public double getPrecio() {
+//         return precio;
+//     }
 
-    public void setPrecio(double precio) {
-        this.precio = precio;
-    }
+//     public void setPrecio(double precio) {
+//         this.precio = precio;
+//     }
 
-    public void add(Articulo articulo) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'add'");
-    }
-}
+//     public Categoria getCategoria() {
+//         return categoria;
+//     }
+
+//     public void setCategoria(Categoria categoria) {
+//         this.categoria = categoria;
+//     }
+
+//     public void add(Articulo articulo) {
+//         // TODO Auto-generated method stub
+//         throw new UnsupportedOperationException("Unimplemented method 'add'");
+//     }
+// }
 /**
  * CONSIGNA DE ESTA CLASE
  * ------------------------------------------------------------
@@ -83,27 +93,78 @@ public class Articulo {
  * por ejemplo:
  * - String getDetalleEspecifico();
  */
-public abstract class Articulo implements Calculable, Identificable {
+public abstract class Articulo 
+    implements Calculable, Identificable {
 
-    protected int codigo;
-    protected String nombre;
-    protected double precio;
-    protected Categoria categoria;
+    private int codigo;
+    private String nombre;
+    private double precio;
+    private Categoria categoria;
+    
+    public Articulo(int codigo, String nombre, double precio, Categoria categoria) {
+        this.codigo = codigo;
+        this.nombre = nombre;
+        this.precio = precio;
+        this.categoria = categoria;
+    }
 
-    // TODO:
-    // Crear constructor completo.
+    public int getCodigo() {
+        return codigo;
+    }
 
-    // TODO:
-    // Crear getters y setters.
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public double getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(double precio) {
+        this.precio = precio;
+    }
+
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
+    }
 
     public abstract String getTipoArticulo();
+    
+    public abstract String getDetalleEspecifico();
 
-    @Override
-    public String toString() {
-        // TODO:
-        // Mostrar todos los datos comunes del artículo.
-        // Sugerencia:
-        // incluir también tipo y precio final.
-        return "";
-    }
+        @Override
+        public String toString() {
+            return "Artículo: { " + 
+                "código: " + codigo + 
+                ", nombre: " + nombre +  
+                ", Precio: $" + precio + 
+                ", Categoría: " + categoria.getNombre() + '\'' + 
+                ", Tipo: " + getTipoArticulo() + '\'' + 
+                ", detalle: " + getDetalleEspecifico() + '\'' + 
+                '}';
+        }
 }
+
+//     public abstract String getTipoArticulo();
+
+//     @Override
+//     public String toString() {
+//         // TODO:
+//         // Mostrar todos los datos comunes del artículo.
+//         // Sugerencia:
+//         // incluir también tipo y precio final.
+//         return "";
+//     }
+// }
