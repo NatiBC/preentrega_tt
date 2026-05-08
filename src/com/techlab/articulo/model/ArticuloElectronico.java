@@ -1,32 +1,7 @@
 package com.techlab.articulo.model;
 
-/**
- * CONSIGNA DE ESTA CLASE
- * ------------------------------------------------------------
- * Esta clase debe heredar de Articulo.
- *
- * Representa un artículo electrónico.
- *
- * ATRIBUTO ESPECÍFICO
- * ------------------------------------------------------------
- * - garantiaMeses : int
- *
- * ESTA CLASE DEBE
- * ------------------------------------------------------------
- * - tener constructor
- * - tener getters y setters
- * - sobrescribir getTipoArticulo()
- * - sobrescribir calcularPrecioFinal()
- *
- * IDEA DIDÁCTICA PARA calcularPrecioFinal()
- * ------------------------------------------------------------
- * Podés definir una regla propia, por ejemplo:
- * - si la garantía supera 12 meses, aplicar un recargo
- * - si no, dejar el precio igual
- *
- * Lo importante no es la regla comercial exacta,
- * sino mostrar que cada subtipo implementa el cálculo de manera distinta.
- */
+import java.util.ArrayList;
+
 public class ArticuloElectronico extends Articulo {
 
     private int garantiaMeses;
@@ -43,6 +18,70 @@ public class ArticuloElectronico extends Articulo {
         this.garantiaMeses = garantiaMeses;
     }
 
+    // CATEGORÍAS VÁLIDAS
+    public static ArrayList<Categoria> obtenerCategorias() {
+
+        ArrayList<Categoria> categorias = new ArrayList<>();
+
+        categorias.add(
+            new Categoria(
+                1,
+                "Computación",
+                "Productos informáticos"
+            )
+        );
+
+        categorias.add(
+            new Categoria(
+                2,
+                "Electrodomésticos",
+                "Artefactos electrónicos para el hogar"
+            )
+        );
+
+        categorias.add(
+            new Categoria(
+                3,
+                "Audio",
+                "Equipos de sonido"
+            )
+        );
+
+        categorias.add(
+            new Categoria(
+                7,
+                "Telefonía",
+                "Teléfonos y accesorios"
+            )
+        );
+        
+        categorias.add(
+            new Categoria(
+                8,
+                "Video",
+                "Televisores y proyectores"
+            )
+        );
+
+        categorias.add(
+            new Categoria(
+                9,
+                "Pequeños electrodomésticos",
+                "Pequeños artefactos para el hogar"
+            )
+        );
+
+        categorias.add(
+            new Categoria(
+                10,
+                "Otros",
+                "Otros productos electrónicos"
+            )
+        );
+
+        return categorias;
+    }    
+
     // GETTER
     public int getGarantiaMeses() {
         return garantiaMeses;
@@ -53,11 +92,14 @@ public class ArticuloElectronico extends Articulo {
         this.garantiaMeses = garantiaMeses;
     }
     
+    @Override
+    public String getTipoArticulo() {
+        return "Electrónico";
+    }
+    
     public double calcularPrecioFinal() {
-
         // Si la garantía supera 12 meses,
         // aplicamos 10% de recargo
-
         if (garantiaMeses > 12) {
             return getPrecio() * 1.10;
         }
@@ -66,19 +108,7 @@ public class ArticuloElectronico extends Articulo {
     }
 
     @Override
-    public String getTipoArticulo() {
-        return "Electrónico";
-    }
-
-    @Override
     public String getDetalleEspecifico() {
         return "Garantía: " + garantiaMeses + " meses";
-    }
-
-    @Override
-    public String toString() {
-
-        return super.toString() +
-                ", garantiaMeses=" + garantiaMeses;
     }
 }

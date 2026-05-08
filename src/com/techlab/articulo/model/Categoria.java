@@ -47,39 +47,3 @@ public class Categoria implements Identificable {
                 '}';
     }
 }
-
-    // public int getCodigo() {
-    //     return codigo;
-    // }
-
-    // public String getNombre() {
-    //     return nombre;
-    // }
-
-    // public void setNombre(String nombre) {
-    //     this.nombre = nombre;
-    // }
-
-    // public String getDescripcion() {
-    //     return descripcion;
-    // }
-
-    // public void setDescripcion(String descripcion) {
-    //     this.descripcion = descripcion;
-    // }
-
-    // @Override
-    // public int getCodigo() {
-    //      TODO:
-    //     return 0;
-    // }
-
-    //  TODO:
-    //  Crear getters y setters restantes.
-
-    // @Override
-    // public String toString() {
-    //      TODO:
-    //     return "";
-    // }
-    //}

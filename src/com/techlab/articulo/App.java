@@ -13,11 +13,6 @@ public class App {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         ArrayList<Articulo> articulos = new ArrayList<>();
-        ArrayList<Categoria> categorias = new ArrayList<>();
-
-            // CARGAR CATEGORÍAS PREDEFINIDAS
-        categorias.add(new Categoria(1, "Electrónica", "Productos electrónicos"));
-        categorias.add(new Categoria(2, "Alimentos", "Productos alimenticios"));
 
         int opcion;
 
@@ -38,7 +33,7 @@ public class App {
 
             switch (opcion) {
                 case 1:
-                    ingresarArticulo(scanner, articulos, categorias);
+                    ingresarArticulo(scanner, articulos);
                     break;
                 case 2:
                     listarArticulos(articulos);
@@ -53,7 +48,19 @@ public class App {
                     eliminarArticulo(scanner, articulos);
                     break;
                 case 6:
-                    listarCategoriasExistentes(categorias);
+
+                    ArrayList<Categoria> todas = new ArrayList<>();
+
+                    todas.addAll(
+                        ArticuloElectronico.obtenerCategorias()
+                    );
+
+                    todas.addAll(
+                        ArticuloAlimenticio.obtenerCategorias()
+                    );
+
+                    listarCategoriasExistentes(todas);
+
                     break;
                 case 0:
                     System.out.println("\nSaliendo del sistema. ¡Hasta luego!");
@@ -70,8 +77,7 @@ public class App {
     
     public static void ingresarArticulo(
             Scanner s,
-            ArrayList<Articulo> listaArticulos,
-            ArrayList<Categoria> listaCategorias) {
+            ArrayList<Articulo> listaArticulos) {
 
         System.out.println("\n--- INGRESAR ARTÍCULO ---");
 
@@ -83,18 +89,9 @@ public class App {
         // PEDIR DATOS
         int codigo = leerEntero(s, "Ingrese el código del artículo: ");
 
-        String nombre = leerTextoNoVacio(
-            s,
-            "Ingrese el nombre del artículo: "
-        );
+        String nombre = leerTextoNoVacio(s, "Ingrese el nombre del artículo: ");
 
-        double precio = leerDouble(
-            s,
-            "Ingrese el precio del artículo: "
-        );
-
-        Categoria categoria =
-            pedirCategoriaExistente(s, listaCategorias);
+        double precio = leerDouble(s, "Ingrese el precio del artículo: ");
 
         // VALIDAR DUPLICADO
         if (existeArticulo(listaArticulos, nombre)) {
@@ -110,6 +107,12 @@ public class App {
         switch (tipo) {
 
             case 1:
+                // CATEGORÍAS DE ELECTRÓNICOS
+                Categoria categoriaElectronico =
+                    pedirCategoriaExistente(
+                        s,
+                        ArticuloElectronico.obtenerCategorias()
+                    );
 
                 int garantia = leerEntero(
                     s,
@@ -120,25 +123,34 @@ public class App {
                     codigo,
                     nombre,
                     precio,
-                    categoria,
+                    categoriaElectronico,
                     garantia
                 );
+
                 break;
 
             case 2:
 
-                int diasParaVencimiento = leerEntero(
+                // CATEGORÍAS DE ALIMENTOS
+                Categoria categoriaAlimento =
+                    pedirCategoriaExistente(
+                        s,
+                        ArticuloAlimenticio.obtenerCategorias()
+                    );
+
+                int diasVencimiento = leerEntero(
                     s,
-                    "Ingrese los días para vencimiento: "
+                    "Ingrese días para vencimiento: "
                 );
 
                 articulo = new ArticuloAlimenticio(
                     codigo,
                     nombre,
                     precio,
-                    categoria,
-                    diasParaVencimiento
+                    categoriaAlimento,
+                    diasVencimiento
                 );
+
                 break;
 
             default:
@@ -152,7 +164,7 @@ public class App {
         listaArticulos.add(articulo);
 
         System.out.println(
-            "Artículo ingresado correctamente."
+            "\nArtículo ingresado correctamente."
         );
     }
     
@@ -168,7 +180,8 @@ public class App {
         
         // Recorremos la lista usando un for tradicional para mostrar también la posición.
         for (int i = 0; i < articulos.size(); i++) {
-            System.out.println((i + 1) + " - " + articulos.get(i));
+            System.out.println((i + 1) + " - ");
+            System.out.println(articulos.get(i));
         }
     }
     
@@ -217,7 +230,7 @@ public class App {
         // Si la nueva descripción ya existe y no es exactamente el mismo artículo,
         // no permitimos la modificación.
         if (existeArticulo(articulos, nuevaDescripcion) &&
-        !articulos.get(posicion).equalsIgnoreCase(nuevaDescripcion)) {
+        !articulos.get(posicion).getNombre().equalsIgnoreCase(nuevaDescripcion)) {
             System.out.println("Error: ya existe otro artículo con ese nombre.");
             return;
         }
@@ -247,7 +260,7 @@ public class App {
         }
         // Pedimos confirmación antes de eliminar.
         try {
-            confirmarEliminar(scanner, articulos.get(posicion));
+            confirmarEliminar(scanner,articulos.get(posicion).getNombre());
         } catch (RuntimeException e) {
             System.out.println(e.getMessage());
             return; // Salimos del método sin eliminar nada.
