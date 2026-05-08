@@ -48,13 +48,6 @@ public class ArticuloAlimenticio extends Articulo {
     // TODO:
     // Crear getters y setters.
 
-
-    @Override
-    public String getTipoArticulo() {
-        return "Alimenticio";
-    }
-
-    @Override
     public double calcularPrecioFinal() {
 
         // Si vence pronto, aplicamos descuento
@@ -64,6 +57,16 @@ public class ArticuloAlimenticio extends Articulo {
         }
 
         return getPrecio();
+    }
+
+    @Override
+    public String getTipoArticulo() {
+        return "Alimenticio";
+    }
+
+    @Override
+    public String getDetalleEspecifico() {
+        return "Dias para vencimiento: " + diasParaVencimiento;
     }
 
     @Override

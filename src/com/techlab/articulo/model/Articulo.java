@@ -143,7 +143,7 @@ public abstract class Articulo
     public abstract String getTipoArticulo();
     
     public abstract String getDetalleEspecifico();
-
+    
         @Override
         public String toString() {
             return "Artículo: { " + 
