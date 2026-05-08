@@ -27,7 +27,8 @@ public class ArticuloElectronico extends Articulo {
             new Categoria(
                 1,
                 "Computación",
-                "Productos informáticos"
+                "Productos informáticos",
+                "ELECTRONICOS"
             )
         );
 
@@ -35,7 +36,8 @@ public class ArticuloElectronico extends Articulo {
             new Categoria(
                 2,
                 "Electrodomésticos",
-                "Artefactos electrónicos para el hogar"
+                "Artefactos electrónicos para el hogar",
+                "ELECTRONICOS"
             )
         );
 
@@ -43,7 +45,8 @@ public class ArticuloElectronico extends Articulo {
             new Categoria(
                 3,
                 "Audio",
-                "Equipos de sonido"
+                "Equipos de sonido",
+                "ELECTRONICOS"
             )
         );
 
@@ -51,7 +54,8 @@ public class ArticuloElectronico extends Articulo {
             new Categoria(
                 7,
                 "Telefonía",
-                "Teléfonos y accesorios"
+                "Teléfonos y accesorios",
+                "ELECTRONICOS"
             )
         );
         
@@ -59,7 +63,8 @@ public class ArticuloElectronico extends Articulo {
             new Categoria(
                 8,
                 "Video",
-                "Televisores y proyectores"
+                "Televisores y proyectores",
+                "ELECTRONICOS"
             )
         );
 
@@ -67,7 +72,8 @@ public class ArticuloElectronico extends Articulo {
             new Categoria(
                 9,
                 "Pequeños electrodomésticos",
-                "Pequeños artefactos para el hogar"
+                "Pequeños artefactos para el hogar",
+                "ELECTRONICOS"
             )
         );
 
@@ -75,7 +81,8 @@ public class ArticuloElectronico extends Articulo {
             new Categoria(
                 10,
                 "Otros",
-                "Otros productos electrónicos"
+                "Otros productos electrónicos",
+                "ELECTRONICOS"
             )
         );
 

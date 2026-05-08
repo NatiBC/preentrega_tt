@@ -26,7 +26,8 @@ public class ArticuloAlimenticio extends Articulo {
             new Categoria(
                 1,
                 "Lácteos",
-                "Productos derivados de leche"
+                "Productos derivados de leche",
+                "ALIMENTOS"
             )
         );
 
@@ -34,7 +35,8 @@ public class ArticuloAlimenticio extends Articulo {
             new Categoria(
                 2,
                 "Bebidas sin alcohol",
-                "Aguas, aguas con gas, aguas saborizadas y refrescos"
+                "Aguas, aguas con gas, aguas saborizadas y refrescos",
+                "ALIMENTOS"
             )
         );
         
@@ -42,7 +44,8 @@ public class ArticuloAlimenticio extends Articulo {
             new Categoria(
                 3,
                 "Bebidas con alchol",
-                "Vinos, espumantes, cervezas y licores"
+                "Vinos, espumantes, cervezas y licores",
+                "ALIMENTOS"
             )
         );
         
@@ -50,7 +53,8 @@ public class ArticuloAlimenticio extends Articulo {
             new Categoria(
                 4,
                 "Snacks",
-                "Aperitivos y snacks"
+                "Aperitivos y snacks",
+                "ALIMENTOS"
             )
         );
         
@@ -58,7 +62,8 @@ public class ArticuloAlimenticio extends Articulo {
             new Categoria(
                 5,
                 "Frutas y Verduras",
-                "Productos frescos"
+                "Productos frescos",
+                "ALIMENTOS"
             )
         );
 
@@ -66,7 +71,8 @@ public class ArticuloAlimenticio extends Articulo {
             new Categoria(
                 6,
                 "Carnes y Pescados",
-                "Productos de origen animal"
+                "Productos de origen animal",
+                "ALIMENTOS"
             )
         );
         
@@ -74,7 +80,8 @@ public class ArticuloAlimenticio extends Articulo {
             new Categoria(
                 7,
                 "Congelados",
-                "Productos congelados"
+                "Productos congelados",
+                "ALIMENTOS"
             )
         );
 
@@ -82,7 +89,8 @@ public class ArticuloAlimenticio extends Articulo {
             new Categoria(
                 8,
                 "Panadería y Pastelería",
-                "Productos de panadería y pastelería"
+                "Productos de panadería y pastelería",
+                "ALIMENTOS"
             )
         );
 
@@ -90,7 +98,8 @@ public class ArticuloAlimenticio extends Articulo {
             new Categoria(
                 9,
                 "Dulces y Golosinas",
-                "Dulces, chocolates y golosinas"
+                "Dulces, chocolates y golosinas",
+                "ALIMENTOS"
             )
         );
 
@@ -98,7 +107,8 @@ public class ArticuloAlimenticio extends Articulo {
             new Categoria(
                 10,
                 "Harinas y Cereales",
-                "Harinas, cereales y productos derivados"
+                "Harinas, cereales y productos derivados",
+                "ALIMENTOS"
             )
         );
         

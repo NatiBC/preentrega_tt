@@ -7,11 +7,13 @@ public class Categoria implements Identificable {
     private int codigo;
     private String nombre;
     private String descripcion;
+    private String tipo; // "ALIMENTOS" o "ELECTRONICOS"
 
-    public Categoria(int codigo, String nombre, String descripcion) {
+    public Categoria(int codigo, String nombre, String descripcion, String tipo) {
         this.codigo = codigo;
         this.nombre = nombre;
         this.descripcion = descripcion;
+        this.tipo = tipo;
     }
 
     public int getCodigo() {
@@ -37,6 +39,14 @@ public class Categoria implements Identificable {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
+    
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
 
     @Override
     public String toString() {
@@ -44,6 +54,7 @@ public class Categoria implements Identificable {
                 "codigo=" + codigo +
                 ", nombre='" + nombre + '\'' +
                 ", descripcion='" + descripcion + '\'' +
+                ", tipo='" + tipo + '\'' +
                 '}';
     }
 }
