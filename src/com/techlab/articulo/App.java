@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import com.techlab.articulo.model.Articulo;
 import com.techlab.articulo.model.Categoria;
+import com.techlab.articulo.menu.Menu;
 
 public class App {
 
@@ -11,6 +12,10 @@ public class App {
         Scanner scanner = new Scanner(System.in);
         ArrayList<Articulo> articulos = new ArrayList<>();
         ArrayList<Categoria> categorias = new ArrayList<>();
+
+            // CARGAR CATEGORÍAS PREDEFINIDAS
+        categorias.add(new Categoria(1, "Electrónica", "Productos electrónicos"));
+        categorias.add(new Categoria(2, "Alimentos", "Productos alimenticios"));
 
         int opcion;
 
@@ -59,82 +64,53 @@ public class App {
 
         scanner.close();
     }
+
     
-    public static void listarCategoriasExistentes (ArrayList<Categoria> categorias) {
-        System.out.println("\n--- LISTADO DE CATEGORÍAS ---");
-        if (categorias.isEmpty()) {
-            System.out.println("No hay categorías cargadas.");
-            return;
-        }
-
-    }
-
-    public static void pedirCategoriaExistente(Scanner scanner, ArrayList<Categoria> categorias) {
-
-        while (true) {
-            int codigoCategoria = leerEntero(scanner, "Ingrese el código de la categoría: ");
-            
-            Categoria categoria = buscarCategoriaPorCodigo(categorias, codigoCategoria);
-
-            if (categoria != null) {
-                return categoria; // Retorna la categoría encontrada
-            }
-
-            System.out.println("Error: la categoría no existe. Por favor, ingrese una categoría válida.");
-        }
-    }
-
-    public static Categoria buscarCategoriaPorCodigo(ArrayList<Categoria> categorias, int codigo) {
-        for (Categoria categoria : categorias) {
-            if (categoria.getCodigo() == codigo) {
-                return categoria; // Retorna la categoría encontrada
-            }
-        }
-        return null; // Retorna null si no se encuentra la categoría
-    }
-
     public static void ingresarArticulo(Scanner s, ArrayList<Articulo> listaArticulos, ArrayList<Categoria> listaCategorias) {
-    
+        
         System.out.println("\n--- INGRESAR ARTÍCULO ---");
-
+        
         // Pedimos el código utilizando un método auxiliar para validar que sea un número entero.
         int codigo = leerEntero(s, "Ingrese el código del artículo: ");
-    
+        
         // Pedimos la descripción utilizando un método auxiliar.
         String nombre = leerTextoNoVacio(s, "Ingrese el nombre del artículo: ");
-
+        
         // Pedimos el precio utilizando un método auxiliar para validar que sea un número decimal.
         double precio = leerDouble(s, "Ingrese el precio del artículo: ");
 
+        Categoria categoria = pedirCategoriaExistente(s, listaCategorias);
+        
         // Antes de agregar el artículo, validamos que no exista ya en la lista.
         if (existeArticulo(listaArticulos, nombre)) {
             System.out.println("Error: el artículo ya existe en el sistema.");
             return;
         }
-
-        Articulo articulo = new Articulo(codigo, nombre, precio);
-
+        
+        Articulo articulo = new Articulo(codigo, nombre, precio, categoria);
+        
         System.out.println( "Codigo: "+ articulo.getCodigo());
         articulo.setNombre(nombre);
         articulo.setPrecio(precio);
-
+        articulo.setCategoria(categoria);
+        
         // Si no existe, lo agregamos a la lista.
         listaArticulos.add(articulo);
         // listaArticulos.add(nombre);    
-    
+        
         System.out.println("Artículo ingresado correctamente.");
     }
-
+    
     public static void listarArticulos(ArrayList<Articulo> articulos) {
-
+        
         System.out.println("\n--- LISTADO DE ARTÍCULOS ---");
-
+        
         // Si la lista está vacía, no hay nada que mostrar.
         if (articulos.isEmpty()) {
             System.out.println("No hay artículos cargados.");
             return;
         }
-
+        
         // Recorremos la lista usando un for tradicional para mostrar también la posición.
         for (int i = 0; i < articulos.size(); i++) {
             System.out.println((i + 1) + " - " + articulos.get(i));
@@ -142,19 +118,19 @@ public class App {
     }
     
     public static void consultarArticulo(Scanner scanner, ArrayList<Articulo> articulos) {
-
+        
         System.out.println("\n--- CONSULTAR ARTÍCULO ---");
-
+        
         // Si la lista está vacía, no tiene sentido pedir búsqueda.
         if (articulos.isEmpty()) {
             System.out.println("No hay ningún artículo en la base de datos.");
             return;
         }
-
+        
         String nombreBuscado = leerTextoNoVacio(scanner, "Ingrese el nombre del artículo que desea buscar: ");
-
+        
         int posicion = buscarPosicionArticulo(articulos, nombreBuscado);
-
+        
         if (posicion == -1) {
             System.out.println("El artículo no se encuentra en la base de datos.");
         } else {
@@ -164,52 +140,52 @@ public class App {
     }
     
     public static void modificarArticulo(Scanner scanner, ArrayList<Articulo> articulos) {
-
+        
         System.out.println("\n--- MODIFICAR ARTÍCULO ---");
-
+        
         if (articulos.isEmpty()) {
             System.out.println("No hay ningún artículo en la base de datos.");
             return;
         }
-
+        
         String nombreActual = leerTextoNoVacio(scanner, "Ingrese el nombre del artículo a modificar: ");
-
+        
         int posicion = buscarPosicionArticulo(articulos, nombreActual);
-
+        
         if (posicion == -1) {
             System.out.println("El artículo no se encuentra en la base de datos.");
             return;
         }
-
+        
         String nuevaDescripcion = leerTextoNoVacio(scanner, "Ingrese el nuevo nombre del artículo: ");
-
+        
         // Si la nueva descripción ya existe y no es exactamente el mismo artículo,
         // no permitimos la modificación.
         if (existeArticulo(articulos, nuevaDescripcion) &&
-                !articulos.get(posicion).equalsIgnoreCase(nuevaDescripcion)) {
+        !articulos.get(posicion).equalsIgnoreCase(nuevaDescripcion)) {
             System.out.println("Error: ya existe otro artículo con ese nombre.");
             return;
         }
-
+        
         // Reemplazamos el valor viejo por el nuevo.
         articulos.get(posicion).setNombre(nuevaDescripcion);
-
+        
         System.out.println("Artículo modificado correctamente.");
     }
     
     public static void eliminarArticulo(Scanner scanner, ArrayList<Articulo> articulos) {
-
+        
         System.out.println("\n--- ELIMINAR ARTÍCULO ---");
-
+        
         if (articulos.isEmpty()) {
             System.out.println("No hay ningún artículo en la base de datos.");
             return;
         }
-
+        
         String nombreAEliminar = leerTextoNoVacio(scanner, "Ingrese el nombre del artículo a eliminar: ");
-
+        
         int posicion = buscarPosicionArticulo(articulos, nombreAEliminar);
-
+        
         if (posicion == -1) {
             System.out.println("No se encontró ningún artículo con ese nombre.");
             return;
@@ -223,7 +199,7 @@ public class App {
         }
         // Eliminamos el elemento según su posición.
         articulos.remove(posicion);
-
+        
         System.out.println("Artículo eliminado correctamente.");
     }
     
@@ -234,15 +210,15 @@ public class App {
                 return true;
             }
         }
-
+        
         return false;
     }
-
+    
     public static void confirmarEliminar(Scanner scanner, String nombre) {
         while (true) {
             System.out.print("¿Está seguro que desea eliminar el artículo '" + nombre + "'? (S/N): ");
             String respuesta = scanner.nextLine().trim().toUpperCase();
-
+            
             if (respuesta.equals("S")) {
                 return; // Confirmación positiva, se procede a eliminar
             } else if (respuesta.equals("N")) {
@@ -252,36 +228,36 @@ public class App {
             }
         }
     }
-
+    
     
     public static int buscarPosicionArticulo(ArrayList<Articulo> articulos, String nombre) {
-
+        
         for (int i = 0; i < articulos.size(); i++) {
             if (articulos.get(i).getNombre().equalsIgnoreCase(nombre.trim())) {
                 return i;
             }
         }
-
+        
         return -1;
     }
-
+    
     public static int leerEntero(Scanner scanner, String mensaje) {
-       // mientras sea true, el programa seguirá pidiendo un número hasta que el usuario ingrese uno válido
+        // mientras sea true, el programa seguirá pidiendo un número hasta que el usuario ingrese uno válido
         while (true) {
             // manejo de excepcion
             // el bloque try intenta ejecutar el código que puede generar una excepción
             try {
                 System.out.print(mensaje);
                 return Integer.parseInt(scanner.nextLine());
-            // el bloque catch captura la excepción específica que se produce cuando el usuario ingresa un texto que no se puede convertir a entero
+                // el bloque catch captura la excepción específica que se produce cuando el usuario ingresa un texto que no se puede convertir a entero
             } catch (NumberFormatException e) {
                 System.out.println("Error: debe ingresar un número entero válido.");
             }
         }
     }
-
+    
     public static String leerTextoNoVacio(Scanner scanner, String mensaje) {
-
+        
         while (true) {
             System.out.print(mensaje);
             String texto = scanner.nextLine();
@@ -293,11 +269,11 @@ public class App {
                 // voy a retornar a donde fue llamada esta funcion, el texto sin espacios al principio ni al final
                 return texto.trim();
             }
-             // este mensaje solo se mostrara si el texto esta vacio luego de sacarle los espacios
+            // este mensaje solo se mostrara si el texto esta vacio luego de sacarle los espacios
             System.out.println("Error: el texto no puede estar vacío.");
         }
     }
-
+    
     public static double leerDouble(Scanner scanner, String mensaje) {
         while (true) {
             try {
@@ -307,6 +283,68 @@ public class App {
                 System.out.println("Error: debe ingresar un número decimal válido.");
             }
         }
+    
+    }
+
+    public static void listarCategoriasExistentes(ArrayList<Categoria> categorias) {
+
+        System.out.println("\n--- LISTADO DE CATEGORÍAS ---");
+
+        if (categorias.isEmpty()) {
+            System.out.println("No hay categorías cargadas.");
+            return;
+        }
+
+        for (Categoria categoria : categorias) {
+            System.out.println(
+                categoria.getCodigo() +
+                " - " +
+                categoria.getNombre() +
+                " | " +
+                categoria.getDescripcion()
+            );
+        }
+    }
+    
+    public static Categoria pedirCategoriaExistente(
+            Scanner scanner,
+            ArrayList<Categoria> categorias) {
+
+        while (true) {
+
+            System.out.println("\n--- CATEGORÍAS DISPONIBLES ---");
+
+            for (Categoria categoria : categorias) {
+                System.out.println(
+                    categoria.getCodigo() + " - " + categoria.getNombre()
+                );
+            }
+
+            int codigoCategoria = leerEntero(
+                scanner,
+                "Ingrese el código de la categoría: "
+            );
+
+            Categoria categoria =
+                buscarCategoriaPorCodigo(categorias, codigoCategoria);
+
+            if (categoria != null) {
+                return categoria;
+            }
+
+            System.out.println(
+                "Error: la categoría no existe."
+            );
+        }
+    }
+    
+    public static Categoria buscarCategoriaPorCodigo(ArrayList<Categoria> categorias, int codigo) {
+        for (Categoria categoria : categorias) {
+            if (categoria.getCodigo() == codigo) {
+                return categoria; // Retorna la categoría encontrada
+            }
+        }
+        return null; // Retorna null si no se encuentra la categoría
     }
 }
 

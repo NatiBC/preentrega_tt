@@ -28,6 +28,7 @@ import java.util.Scanner;
  * - MenuCategorias
  */
 public abstract class Menu {
+    
 
     protected Scanner scanner;
 
