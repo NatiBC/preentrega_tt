@@ -5,6 +5,8 @@ import java.util.Scanner;
 import com.techlab.articulo.model.Articulo;
 import com.techlab.articulo.model.Categoria;
 import com.techlab.articulo.menu.Menu;
+import com.techlab.articulo.model.ArticuloElectronico;
+import com.techlab.articulo.model.ArticuloAlimenticio;
 
 public class App {
 
@@ -66,39 +68,92 @@ public class App {
     }
 
     
-    public static void ingresarArticulo(Scanner s, ArrayList<Articulo> listaArticulos, ArrayList<Categoria> listaCategorias) {
-        
-        System.out.println("\n--- INGRESAR ARTÍCULO ---");
-        
-        // Pedimos el código utilizando un método auxiliar para validar que sea un número entero.
-        int codigo = leerEntero(s, "Ingrese el código del artículo: ");
-        
-        // Pedimos la descripción utilizando un método auxiliar.
-        String nombre = leerTextoNoVacio(s, "Ingrese el nombre del artículo: ");
-        
-        // Pedimos el precio utilizando un método auxiliar para validar que sea un número decimal.
-        double precio = leerDouble(s, "Ingrese el precio del artículo: ");
+    public static void ingresarArticulo(
+            Scanner s,
+            ArrayList<Articulo> listaArticulos,
+            ArrayList<Categoria> listaCategorias) {
 
-        Categoria categoria = pedirCategoriaExistente(s, listaCategorias);
-        
-        // Antes de agregar el artículo, validamos que no exista ya en la lista.
+        System.out.println("\n--- INGRESAR ARTÍCULO ---");
+
+        System.out.println("1 - Electrónico");
+        System.out.println("2 - Alimenticio");
+
+        int tipo = leerEntero(s, "Seleccione el tipo de artículo: ");
+
+        // PEDIR DATOS
+        int codigo = leerEntero(s, "Ingrese el código del artículo: ");
+
+        String nombre = leerTextoNoVacio(
+            s,
+            "Ingrese el nombre del artículo: "
+        );
+
+        double precio = leerDouble(
+            s,
+            "Ingrese el precio del artículo: "
+        );
+
+        Categoria categoria =
+            pedirCategoriaExistente(s, listaCategorias);
+
+        // VALIDAR DUPLICADO
         if (existeArticulo(listaArticulos, nombre)) {
-            System.out.println("Error: el artículo ya existe en el sistema.");
+            System.out.println(
+                "Error: el artículo ya existe en el sistema."
+            );
             return;
         }
-        
-        Articulo articulo = new Articulo(codigo, nombre, precio, categoria);
-        
-        System.out.println( "Codigo: "+ articulo.getCodigo());
-        articulo.setNombre(nombre);
-        articulo.setPrecio(precio);
-        articulo.setCategoria(categoria);
-        
-        // Si no existe, lo agregamos a la lista.
+
+        // CREAR ARTÍCULO SEGÚN TIPO
+        Articulo articulo;
+
+        switch (tipo) {
+
+            case 1:
+
+                int garantia = leerEntero(
+                    s,
+                    "Ingrese meses de garantía: "
+                );
+
+                articulo = new ArticuloElectronico(
+                    codigo,
+                    nombre,
+                    precio,
+                    categoria,
+                    garantia
+                );
+                break;
+
+            case 2:
+
+                int diasParaVencimiento = leerEntero(
+                    s,
+                    "Ingrese los días para vencimiento: "
+                );
+
+                articulo = new ArticuloAlimenticio(
+                    codigo,
+                    nombre,
+                    precio,
+                    categoria,
+                    diasParaVencimiento
+                );
+                break;
+
+            default:
+                System.out.println(
+                    "Error: tipo de artículo no válido."
+                );
+                return;
+        }
+
+        // AGREGAR A LA LISTA
         listaArticulos.add(articulo);
-        // listaArticulos.add(nombre);    
-        
-        System.out.println("Artículo ingresado correctamente.");
+
+        System.out.println(
+            "Artículo ingresado correctamente."
+        );
     }
     
     public static void listarArticulos(ArrayList<Articulo> articulos) {
