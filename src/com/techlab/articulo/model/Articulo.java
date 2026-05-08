@@ -58,7 +58,8 @@ public abstract class Articulo
     
         @Override
         public String toString() {
-            return "Artículo: " + 
+            return 
+                "Artículo: " + 
                 "\nCódigo: " + codigo + 
                 "\nProducto: " + nombre +  
                 "\nPrecio final: $" + String.format("%.2f", calcularPrecioFinal()) +

@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import com.techlab.articulo.model.Articulo;
 import com.techlab.articulo.model.Categoria;
+import com.techlab.articulo.utils.Validaciones;
 import com.techlab.articulo.menu.Menu;
 import com.techlab.articulo.model.ArticuloElectronico;
 import com.techlab.articulo.model.ArticuloAlimenticio;
@@ -333,7 +334,7 @@ public class App {
             // isEmpty() verifica si el texto está vacío después de eliminar los espacios
             // !true -> false
             // !texto.trim().isEmpty() -> true si el texto no está vacío
-            if (!texto.trim().isEmpty()) {
+            if (Validaciones.esTextoNoVacio(texto)) {
                 // voy a retornar a donde fue llamada esta funcion, el texto sin espacios al principio ni al final
                 return texto.trim();
             }
