@@ -123,12 +123,17 @@ public class ArticuloAlimenticio extends Articulo {
         this.diasParaVencimiento = diasParaVencimiento;
     }
 
+    @Override
     public double calcularPrecioFinal() {
 
         // Si vence pronto, aplicamos descuento
 
         if (diasParaVencimiento <= 3) {
             return getPrecio() * 0.8; // 20% descuento
+        }
+
+        if (diasParaVencimiento <= 7) {
+            return getPrecio() * 0.9; // 10% descuento
         }
 
         return getPrecio();

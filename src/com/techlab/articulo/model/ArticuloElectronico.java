@@ -104,11 +104,16 @@ public class ArticuloElectronico extends Articulo {
         return "Electrónico";
     }
     
+    @Override
     public double calcularPrecioFinal() {
         // Si la garantía supera 12 meses,
         // aplicamos 10% de recargo
         if (garantiaMeses > 12) {
             return getPrecio() * 1.10;
+        }
+
+        if (garantiaMeses > 24) {
+            return getPrecio() * 1.20;
         }
 
         return getPrecio();

@@ -54,14 +54,13 @@ public abstract class Articulo
     
     public abstract String getDetalleEspecifico();
 
-    public abstract double calcularPrecioFinal();
-    
-        @Override
-        public String toString() {
-            return 
-                "Artículo: " + 
+    @Override
+    public String toString() {
+        return 
+            "Artículo: " + 
                 "\nCódigo: " + codigo + 
                 "\nProducto: " + nombre +  
+                "\nPrecio base: $" + String.format("%.2f", precio) +
                 "\nPrecio final: $" + String.format("%.2f", calcularPrecioFinal()) +
                 "\nCategoría: " + categoria.getNombre() +
                 "\nDetalle: " + getDetalleEspecifico();
