@@ -1,12 +1,11 @@
 package com.techlab.articulo;
-import java.util.ArrayList;
-import java.util.Scanner;
-
 import com.techlab.articulo.model.Articulo;
+import com.techlab.articulo.model.ArticuloAlimenticio;
+import com.techlab.articulo.model.ArticuloElectronico;
 import com.techlab.articulo.model.Categoria;
 import com.techlab.articulo.utils.Validaciones;
-import com.techlab.articulo.model.ArticuloElectronico;
-import com.techlab.articulo.model.ArticuloAlimenticio;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 public class App {
 
@@ -115,7 +114,7 @@ public class App {
                         ArticuloElectronico.obtenerCategorias()
                     );
 
-                int garantia = leerEntero(
+                int garantiaMeses = leerEntero(
                     s,
                     "\nIngrese meses de garantía: "
                 );
@@ -125,7 +124,7 @@ public class App {
                     nombre,
                     precio,
                     categoriaElectronico,
-                    garantia
+                    garantiaMeses
                 );
 
                 break;
@@ -167,6 +166,7 @@ public class App {
         System.out.println(
             "\nArtículo ingresado correctamente."
         );
+        System.out.println(articulo);
     }
     
     public static void listarArticulos(ArrayList<Articulo> articulos) {
