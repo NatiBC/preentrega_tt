@@ -128,11 +128,11 @@ public class ArticuloAlimenticio extends Articulo {
 
         // Si vence pronto, aplicamos descuento
 
-        if (diasParaVencimiento <= 3) {
+        if (diasParaVencimiento <= 5) {
             return getPrecio() * 0.8; // 20% descuento
         }
 
-        if (diasParaVencimiento <= 7) {
+        if (diasParaVencimiento <= 10) {
             return getPrecio() * 0.9; // 10% descuento
         }
 
