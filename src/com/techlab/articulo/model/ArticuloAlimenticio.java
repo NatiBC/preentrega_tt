@@ -1,6 +1,6 @@
 package com.techlab.articulo.model;
 
-import java.util.ArrayList;
+// import java.util.ArrayList;
 
 public class ArticuloAlimenticio extends Articulo {
 
@@ -18,102 +18,102 @@ public class ArticuloAlimenticio extends Articulo {
     }
 
     // CATEGORÍAS VÁLIDAS
-    public static ArrayList<Categoria> obtenerCategorias() {
+    // public static ArrayList<Categoria> obtenerCategorias() {
 
-        ArrayList<Categoria> categorias = new ArrayList<>();
+    //     ArrayList<Categoria> categorias = new ArrayList<>();
 
-        categorias.add(
-            new Categoria(
-                1,
-                "Lácteos",
-                "Productos derivados de leche",
-                "ALIMENTOS"
-            )
-        );
+    //     categorias.add(
+    //         new Categoria(
+    //             1,
+    //             "Lácteos",
+    //             "Productos derivados de leche",
+    //             "ALIMENTOS"
+    //         )
+    //     );
 
-        categorias.add(
-            new Categoria(
-                2,
-                "Bebidas sin alcohol",
-                "Aguas, aguas con gas, aguas saborizadas y refrescos",
-                "ALIMENTOS"
-            )
-        );
+    //     categorias.add(
+    //         new Categoria(
+    //             2,
+    //             "Bebidas sin alcohol",
+    //             "Aguas, aguas con gas, aguas saborizadas y refrescos",
+    //             "ALIMENTOS"
+    //         )
+    //     );
         
-        categorias.add(
-            new Categoria(
-                3,
-                "Bebidas con alchol",
-                "Vinos, espumantes, cervezas y licores",
-                "ALIMENTOS"
-            )
-        );
+    //     categorias.add(
+    //         new Categoria(
+    //             3,
+    //             "Bebidas con alchol",
+    //             "Vinos, espumantes, cervezas y licores",
+    //             "ALIMENTOS"
+    //         )
+    //     );
         
-        categorias.add(
-            new Categoria(
-                4,
-                "Snacks",
-                "Aperitivos y snacks",
-                "ALIMENTOS"
-            )
-        );
+    //     categorias.add(
+    //         new Categoria(
+    //             4,
+    //             "Snacks",
+    //             "Aperitivos y snacks",
+    //             "ALIMENTOS"
+    //         )
+    //     );
         
-        categorias.add(
-            new Categoria(
-                5,
-                "Frutas y Verduras",
-                "Productos frescos",
-                "ALIMENTOS"
-            )
-        );
+    //     categorias.add(
+    //         new Categoria(
+    //             5,
+    //             "Frutas y Verduras",
+    //             "Productos frescos",
+    //             "ALIMENTOS"
+    //         )
+    //     );
 
-        categorias.add(
-            new Categoria(
-                6,
-                "Carnes y Pescados",
-                "Productos de origen animal",
-                "ALIMENTOS"
-            )
-        );
+    //     categorias.add(
+    //         new Categoria(
+    //             6,
+    //             "Carnes y Pescados",
+    //             "Productos de origen animal",
+    //             "ALIMENTOS"
+    //         )
+    //     );
         
-        categorias.add(
-            new Categoria(
-                7,
-                "Congelados",
-                "Productos congelados",
-                "ALIMENTOS"
-            )
-        );
+    //     categorias.add(
+    //         new Categoria(
+    //             7,
+    //             "Congelados",
+    //             "Productos congelados",
+    //             "ALIMENTOS"
+    //         )
+    //     );
 
-        categorias.add(
-            new Categoria(
-                8,
-                "Panadería y Pastelería",
-                "Productos de panadería y pastelería",
-                "ALIMENTOS"
-            )
-        );
+    //     categorias.add(
+    //         new Categoria(
+    //             8,
+    //             "Panadería y Pastelería",
+    //             "Productos de panadería y pastelería",
+    //             "ALIMENTOS"
+    //         )
+    //     );
 
-        categorias.add(
-            new Categoria(
-                9,
-                "Dulces y Golosinas",
-                "Dulces, chocolates y golosinas",
-                "ALIMENTOS"
-            )
-        );
+    //     categorias.add(
+    //         new Categoria(
+    //             9,
+    //             "Dulces y Golosinas",
+    //             "Dulces, chocolates y golosinas",
+    //             "ALIMENTOS"
+    //         )
+    //     );
 
-        categorias.add(
-            new Categoria(
-                10,
-                "Harinas y Cereales",
-                "Harinas, cereales y productos derivados",
-                "ALIMENTOS"
-            )
-        );
+    //     categorias.add(
+    //         new Categoria(
+    //             10,
+    //             "Harinas y Cereales",
+    //             "Harinas, cereales y productos derivados",
+    //             "ALIMENTOS"
+    //         )
+    //     );
         
-        return categorias;
-    }    
+    //     return categorias;
+    // }    
     
     public int getDiasParaVencimiento() {
         return diasParaVencimiento;
@@ -121,6 +121,16 @@ public class ArticuloAlimenticio extends Articulo {
     
     public void setDiasParaVencimiento(int diasParaVencimiento) {
         this.diasParaVencimiento = diasParaVencimiento;
+    }
+    
+    @Override
+    public String getTipoArticulo() {
+        return "Alimenticio";
+    }
+
+    @Override
+    public String getDetalleEspecifico() {
+        return "Dias para vencimiento: " + diasParaVencimiento;
     }
 
     @Override
@@ -140,12 +150,8 @@ public class ArticuloAlimenticio extends Articulo {
     }
 
     @Override
-    public String getTipoArticulo() {
-        return "Alimenticio";
+    public String toString() {
+        return super.toString();
     }
 
-    @Override
-    public String getDetalleEspecifico() {
-        return "Dias para vencimiento: " + diasParaVencimiento;
-    }
 }

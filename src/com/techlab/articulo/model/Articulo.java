@@ -18,6 +18,7 @@ public abstract class Articulo
         this.categoria = categoria;
     }
 
+    @Override
     public int getCodigo() {
         return codigo;
     }
@@ -56,13 +57,13 @@ public abstract class Articulo
 
     @Override
     public String toString() {
-        return 
-            "Artículo: " + 
-                "\nCódigo: " + codigo + 
-                "\nProducto: " + nombre +  
-                "\nPrecio base: $" + String.format("%.2f", precio) +
-                "\nPrecio final: $" + String.format("%.2f", calcularPrecioFinal()) +
+        return "\n- Artículo -" +
+                "\nCódigo: " + codigo +
+                "\nNombre: " + nombre +
                 "\nCategoría: " + categoria.getNombre() +
-                "\nDetalle: " + getDetalleEspecifico();
-                }
+                "\nTipo: " + getTipoArticulo() +
+                "\nPrecio base: " + precio +
+                "\nDetalle específico: " + getDetalleEspecifico() +
+                "\nPrecio final: " + calcularPrecioFinal();
+    }
 }

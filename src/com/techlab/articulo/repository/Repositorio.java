@@ -43,19 +43,44 @@ import com.techlab.articulo.interfaces.Identificable;
 public class Repositorio<T extends Identificable> {
 
     private ArrayList<T> lista = new ArrayList<>();
-
+    
     // TODO:
     // Implementar método agregar.
 
+    public void agregar(T objeto) {
+        lista.add(objeto);
+    }
+    
     // TODO:
     // Implementar método listar.
 
+    public List<T> listar(){
+        return new ArrayList<>(lista); // Devolvemos una copia para evitar modificaciones externas.
+    }
+    
     // TODO:
     // Implementar método buscarPorCodigo.
 
+    public T buscarPorCodigo(int codigo) {
+        for (T objeto : lista) {
+            if (objeto.getCodigo() == codigo) {
+                return objeto;
+            }
+        }
+        return null; // Si no encontramos el objeto, devolvemos null.
+    }
+    
     // TODO:
     // Implementar método eliminar.
 
+    public void eliminar(T objeto) {
+        lista.remove(objeto);
+    }
+    
     // TODO:
     // Implementar método estaVacio.
+
+    public boolean estaVacio() {
+        return lista.isEmpty();
+    }
 }

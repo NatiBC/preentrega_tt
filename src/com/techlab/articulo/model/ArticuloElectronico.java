@@ -1,6 +1,6 @@
 package com.techlab.articulo.model;
 
-import java.util.ArrayList;
+// import java.util.ArrayList;
 
 public class ArticuloElectronico extends Articulo {
 
@@ -19,75 +19,75 @@ public class ArticuloElectronico extends Articulo {
     }
 
     // CATEGORÍAS VÁLIDAS
-    public static ArrayList<Categoria> obtenerCategorias() {
+    // public static ArrayList<Categoria> obtenerCategorias() {
 
-        ArrayList<Categoria> categorias = new ArrayList<>();
+    //     ArrayList<Categoria> categorias = new ArrayList<>();
 
-        categorias.add(
-            new Categoria(
-                1,
-                "Computación",
-                "Productos informáticos",
-                "ELECTRONICOS"
-            )
-        );
+    //     categorias.add(
+    //         new Categoria(
+    //             1,
+    //             "Computación",
+    //             "Productos informáticos",
+    //             "ELECTRONICOS"
+    //         )
+    //     );
 
-        categorias.add(
-            new Categoria(
-                2,
-                "Electrodomésticos",
-                "Artefactos electrónicos para el hogar",
-                "ELECTRONICOS"
-            )
-        );
+    //     categorias.add(
+    //         new Categoria(
+    //             2,
+    //             "Electrodomésticos",
+    //             "Artefactos electrónicos para el hogar",
+    //             "ELECTRONICOS"
+    //         )
+    //     );
 
-        categorias.add(
-            new Categoria(
-                3,
-                "Audio",
-                "Equipos de sonido",
-                "ELECTRONICOS"
-            )
-        );
+    //     categorias.add(
+    //         new Categoria(
+    //             3,
+    //             "Audio",
+    //             "Equipos de sonido",
+    //             "ELECTRONICOS"
+    //         )
+    //     );
 
-        categorias.add(
-            new Categoria(
-                7,
-                "Telefonía",
-                "Teléfonos y accesorios",
-                "ELECTRONICOS"
-            )
-        );
+    //     categorias.add(
+    //         new Categoria(
+    //             7,
+    //             "Telefonía",
+    //             "Teléfonos y accesorios",
+    //             "ELECTRONICOS"
+    //         )
+    //     );
         
-        categorias.add(
-            new Categoria(
-                8,
-                "Video",
-                "Televisores y proyectores",
-                "ELECTRONICOS"
-            )
-        );
+    //     categorias.add(
+    //         new Categoria(
+    //             8,
+    //             "Video",
+    //             "Televisores y proyectores",
+    //             "ELECTRONICOS"
+    //         )
+    //     );
 
-        categorias.add(
-            new Categoria(
-                9,
-                "Pequeños electrodomésticos",
-                "Pequeños artefactos para el hogar",
-                "ELECTRONICOS"
-            )
-        );
+    //     categorias.add(
+    //         new Categoria(
+    //             9,
+    //             "Pequeños electrodomésticos",
+    //             "Pequeños artefactos para el hogar",
+    //             "ELECTRONICOS"
+    //         )
+    //     );
 
-        categorias.add(
-            new Categoria(
-                10,
-                "Otros",
-                "Otros productos electrónicos",
-                "ELECTRONICOS"
-            )
-        );
+    //     categorias.add(
+    //         new Categoria(
+    //             10,
+    //             "Otros",
+    //             "Otros productos electrónicos",
+    //             "ELECTRONICOS"
+    //         )
+    //     );
 
-        return categorias;
-    }    
+    //     return categorias;
+    // }    
 
     // GETTER
     public int getGarantiaMeses() {
@@ -103,6 +103,11 @@ public class ArticuloElectronico extends Articulo {
     public String getTipoArticulo() {
         return "Electrónico";
     }
+
+    @Override
+    public String getDetalleEspecifico() {
+        return "Tiempo de garantía: " + garantiaMeses + " meses";
+    }
     
     @Override
     public double calcularPrecioFinal() {
@@ -111,16 +116,16 @@ public class ArticuloElectronico extends Articulo {
         if (garantiaMeses > 24) {
             return getPrecio() * 1.20;
         }
-
+        
         if (garantiaMeses > 12) {
             return getPrecio() * 1.10;
         }
-
+        
         return getPrecio();
     }
 
     @Override
-    public String getDetalleEspecifico() {
-        return "Garantía: " + garantiaMeses + " meses";
+    public String toString() {
+        return super.toString();
     }
 }
