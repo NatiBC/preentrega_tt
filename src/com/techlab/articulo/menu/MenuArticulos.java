@@ -119,8 +119,7 @@ public class MenuArticulos extends Menu {
                         System.out.println("Opción inválida. Por favor, intente nuevamente.");
                 }
             } while (opcion != 0);
-        // TODO:
-        // Implementar el loop del menú y llamar a los métodos correspondientes.
+
     }
 
     public void ingresarArticulo() {
@@ -181,7 +180,7 @@ public class MenuArticulos extends Menu {
         System.out.println("==========================================");
         // Si la lista está vacía, no hay nada que mostrar.
         if (repositorioArticulos.estaVacio()) {
-            System.out.println("\nNo hay artículos cargados.");
+            System.out.println("\nNo hay ningún artículo en la base de datos.");
             return;
         }
 
@@ -218,7 +217,7 @@ public class MenuArticulos extends Menu {
         System.out.println("\n--- MODIFICAR ARTÍCULO ---");
 
         if (repositorioArticulos.estaVacio()) {
-            System.out.println("\nNo hay artículos cargados.");
+            System.out.println("\nNo hay ningún artículo en la base de datos.");
             return;
         }
 
@@ -226,6 +225,8 @@ public class MenuArticulos extends Menu {
             System.out.println("\nNo es posible modificar artículos porque no hay categorías cargadas.");
             return;
         }
+
+        listarArticulos();
 
         int codigo = leerEnteroNoNegativo( "\nIngrese el código del artículo a modificar: ");
 
@@ -271,6 +272,8 @@ public class MenuArticulos extends Menu {
             System.out.println("\nNo hay ningún artículo en la base de datos.");
             return;
         }
+
+        listarArticulos();
         
         int codigo = leerEnteroNoNegativo("\nIngrese el código del artículo a eliminar: ");
 
@@ -318,6 +321,4 @@ public class MenuArticulos extends Menu {
         }
     }
 
-    // TODO:
-    // Implementar todos los métodos del CRUD de artículos.
 }

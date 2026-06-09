@@ -182,6 +182,7 @@ public class MenuCategorias extends Menu {
             return;
         }
 
+        listarCategorias();
         int codigo = leerEnteroNoNegativo( "\nIngrese el código de la categoría a modificar: ");
 
         Categoria categoria = repositorioCategorias.buscarPorCodigo(codigo);
@@ -216,6 +217,7 @@ public class MenuCategorias extends Menu {
             return;
         }
 
+        listarCategorias();
         int codigo = leerEnteroNoNegativo("\nIngrese el código de la categoría a eliminar: ");
 
         Categoria categoria = repositorioCategorias.buscarPorCodigo(codigo);
